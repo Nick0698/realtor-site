@@ -1,105 +1,221 @@
+/* === БАЗА === */
 * {
     margin: 0;
     padding: 0;
     box-sizing: border-box;
-    font-family: Arial, sans-serif;
 }
 
 body {
-    background: #f4f4f4;
-    color: #333;
+    font-family: 'Inter', sans-serif;
+    color: #1b1b1b;
+    background: #ffffff;
     line-height: 1.6;
 }
 
-header {
-    background: #2c3e50;
+.container {
+    max-width: 1100px;
+    margin: 0 auto;
+    padding: 0 20px;
+}
+
+/* === ПЛАВНЫЕ ПЕРЕХОДЫ === */
+a, button, .card, .service-card {
+    transition: all 0.3s ease;
+}
+
+.fade-in {
+    animation: fadeIn 0.8s ease forwards;
+    opacity: 0;
+}
+
+@keyframes fadeIn {
+    from { opacity: 0; transform: translateY(20px); }
+    to { opacity: 1; transform: translateY(0); }
+}
+
+/* === ШАПКА === */
+.hero {
+    background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
     color: white;
+    padding: 100px 20px;
     text-align: center;
-    padding: 50px 20px;
 }
 
-header h1 {
-    font-size: 2.5em;
+.hero h1 {
+    font-size: 3em;
+    font-weight: 700;
     margin-bottom: 10px;
+    animation: fadeIn 1s ease;
 }
 
-header p {
-    font-size: 1.2em;
-    margin-bottom: 20px;
+.subtitle {
+    font-size: 1.3em;
+    margin-bottom: 30px;
+    opacity: 0.95;
 }
 
+/* === КНОПКИ === */
 .btn {
     display: inline-block;
-    background: #e67e22;
-    color: white;
-    padding: 12px 25px;
+    background: #95d5b2;
+    color: #1b1b1b;
+    padding: 14px 32px;
     text-decoration: none;
-    border-radius: 5px;
-    font-weight: bold;
+    border-radius: 50px;
+    font-weight: 600;
+    border: none;
+    cursor: pointer;
+    font-size: 1em;
 }
 
+.btn:hover {
+    background: #ffffff;
+    transform: translateY(-3px);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+}
+
+/* === СЕКЦИИ === */
 section {
-    padding: 40px 20px;
-    max-width: 1000px;
-    margin: 0 auto;
+    padding: 80px 20px;
 }
 
 section h2 {
-    margin-bottom: 20px;
-    color: #2c3e50;
+    font-size: 2.2em;
+    color: #2d6a4f;
+    margin-bottom: 40px;
+    text-align: center;
+    position: relative;
 }
 
+section h2::after {
+    content: '';
+    display: block;
+    width: 60px;
+    height: 3px;
+    background: #95d5b2;
+    margin: 15px auto 0;
+}
+
+.bg-light {
+    background: #f8f9fa;
+}
+
+/* === УСЛУГИ === */
+.services-grid {
+    display: grid;
+    grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+    gap: 25px;
+}
+
+.service-card {
+    background: white;
+    padding: 30px 20px;
+    border-radius: 15px;
+    text-align: center;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+}
+
+.service-card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 12px 30px rgba(45,106,79,0.15);
+}
+
+.service-card .icon {
+    font-size: 3em;
+    margin-bottom: 15px;
+}
+
+.service-card h3 {
+    color: #2d6a4f;
+    margin-bottom: 10px;
+}
+
+/* === КАРТОЧКИ ОБЪЕКТОВ === */
 .cards {
     display: grid;
-    grid-template-columns: repeat(auto-fit, minmax(280px, 1fr));
-    gap: 20px;
+    grid-template-columns: repeat(auto-fit, minmax(300px, 1fr));
+    gap: 30px;
 }
 
 .card {
     background: white;
-    border-radius: 8px;
-    padding: 15px;
-    box-shadow: 0 2px 5px rgba(0,0,0,0.1);
+    border-radius: 15px;
+    overflow: hidden;
+    box-shadow: 0 4px 15px rgba(0,0,0,0.08);
+}
+
+.card:hover {
+    transform: translateY(-8px);
+    box-shadow: 0 15px 35px rgba(45,106,79,0.2);
 }
 
 .card img {
     width: 100%;
-    border-radius: 5px;
+    height: 220px;
+    object-fit: cover;
+}
+
+.card-body {
+    padding: 20px;
+}
+
+.card h3 {
+    color: #2d6a4f;
     margin-bottom: 10px;
 }
 
 .price {
-    color: #e67e22;
-    font-weight: bold;
-    font-size: 1.2em;
+    color: #40916c;
+    font-weight: 700;
+    font-size: 1.4em;
+    margin: 10px 0;
 }
 
+.desc {
+    color: #666;
+    font-size: 0.95em;
+}
+
+/* === ФОРМА === */
 form {
     display: flex;
     flex-direction: column;
-    gap: 10px;
+    gap: 15px;
     max-width: 500px;
+    margin: 0 auto;
 }
 
 form input, form textarea {
-    padding: 10px;
-    border: 1px solid #ccc;
-    border-radius: 5px;
+    padding: 14px;
+    border: 2px solid #e0e0e0;
+    border-radius: 10px;
+    font-family: inherit;
+    font-size: 1em;
+    transition: border-color 0.3s ease;
 }
 
-form button {
-    background: #2c3e50;
-    color: white;
-    padding: 12px;
-    border: none;
-    border-radius: 5px;
-    cursor: pointer;
+form input:focus, form textarea:focus {
+    outline: none;
+    border-color: #40916c;
 }
 
+form textarea {
+    min-height: 120px;
+    resize: vertical;
+}
+
+/* === ФУТЕР === */
 footer {
-    text-align: center;
-    padding: 20px;
-    background: #2c3e50;
+    background: #2d6a4f;
     color: white;
-    margin-top: 40px;
+    text-align: center;
+    padding: 30px 20px;
+}
+
+/* === АДАПТИВ === */
+@media (max-width: 768px) {
+    .hero h1 { font-size: 2em; }
+    .subtitle { font-size: 1.1em; }
+    section h2 { font-size: 1.7em; }
+    section { padding: 50px 20px; }
 }

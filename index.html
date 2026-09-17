@@ -3,63 +3,100 @@
 <head>
     <meta charset="UTF-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Николай Илюхин — Риелтор</title>
+    <title>Илюхин Николай-ваш агент по недвижимости</title>
     <link rel="stylesheet" href="style.css">
+    <link href="https://fonts.googleapis.com/css2?family=Inter:wght@300;400;600;700&display=swap" rel="stylesheet">
 </head>
 <body>
-    <header>
-        <h1>Николай Илюхин</h1>
-        <p>Риелтор в Орехово-Зуево | Помогу купить, продать, снять</p>
-        <a href="tel:+79262144990" class="btn">📞 Позвонить</a>
+    <header class="hero">
+        <div class="container">
+            <h1>Илюхин Николай</h1>
+            <p class="subtitle">Риелтор в Орехово-Зуево | Помогу купить, продать, снять</p>
+            <a href="#contact" class="btn">📞 Оставить заявку</a>
+        </div>
     </header>
 
-    <section id="about">
-        <h2>Обо мне</h2>
-        <p>Всем привет. Меня зоут Николай. Я работаю в агенстве недвижимости 'Силмарко' Буду здесь выкладывать посты про недвижимость, здесь много интересного.</p>
+    <section id="about" class="fade-in">
+        <div class="container">
+            <h2>Обо мне</h2>
+            <p>Работаю в агенстве недвижимости. Работаю честно, быстро и с душой. Проведу сделку от первого просмотра до получения ключей.</p>
+        </div>
     </section>
 
-    <section id="services">
-        <h2>Услуги</h2>
-        <ul>
-            <li>🏠 Покупка квартиры</li>
-            <li>💰 Продажа недвижимости</li>
-            <li>🔑 Аренда квартир</li>
-            <li>📄 Юридическое сопровождение</li>
-        </ul>
-    </section>
-
-    <section id="objects">
-        <h2>Мои объекты</h2>
-        <div class="cards">
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" alt="Квартира">
-                <h3>Московская обл. СНТ 'Липовая Грива'</h3>
-                <p>Дом 10</p>
-                <p class="price">1 990 000</p>
-            </div>
-            <div class="card">
-                <img src="https://via.placeholder.com/300x200" alt="Квартира">
-                <h3>1-к квартира, 40 м²</h3>
-                <p>Москва, ул. Другая, 5</p>
-                <p class="price">6 200 000 ₽</p>
+    <section id="services" class="fade-in bg-light">
+        <div class="container">
+            <h2>Услуги</h2>
+            <div class="services-grid">
+                <div class="service-card">
+                    <div class="icon">🏠</div>
+                    <h3>Покупка</h3>
+                    <p>Подберу квартиру под ваш бюджет</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">💰</div>
+                    <h3>Продажа</h3>
+                    <p>Продам вашу недвижимость быстро</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🔑</div>
+                    <h3>Аренда</h3>
+                    <p>Найду квартиры для сдачи и съёма</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">📄</div>
+                    <h3>Сопровождение</h3>
+                    <p>Юридическая помощь на сделке</p>
+                </div>
             </div>
         </div>
     </section>
 
-    <section id="contact">
-        <h2>Связаться со мной</h2>
-        <form id="leadForm">
-            <input type="text" placeholder="Ваше имя" required>
-            <input type="tel" placeholder="Телефон" required>
-            <textarea placeholder="Сообщение"></textarea>
-            <button type="submit">Отправить заявку</button>
-        </form>
+    <section id="objects" class="fade-in">
+        <div class="container">
+            <h2>Мои объекты</h2>
+            <div class="cards" id="objectsList"></div>
+        </div>
+    </section>
+
+    <section id="contact" class="fade-in bg-light">
+        <div class="container">
+            <h2>Связаться со мной</h2>
+            <form id="leadForm">
+                <input type="text" placeholder="Ваше имя" required>
+                <input type="tel" placeholder="Телефон" required>
+                <textarea placeholder="Сообщение"></textarea>
+                <button type="submit" class="btn">Отправить заявку</button>
+            </form>
+        </div>
     </section>
 
     <footer>
-        <p>© 2026 Илюхин Николай. Все права защищены</p>
+        <div class="container">
+            <p>© 2026 Илюхин Николай все права защищены.</p>
+        </div>
     </footer>
 
-    <script src="script.js"></script>
+    <script>
+    fetch('data.json')
+        .then(res => res.json())
+        .then(data => {
+            const list = document.getElementById('objectsList');
+            list.innerHTML = '';
+            data.objects.forEach(obj => {
+                const div = document.createElement('div');
+                div.className = 'card fade-in';
+                div.innerHTML = `
+                    <img src="${obj.image}" alt="${obj.title}">
+                    <div class="card-body">
+                        <h3>${obj.title}</h3>
+                        <p>${obj.address}</p>
+                        <p class="price">${obj.price}</p>
+                        <p class="desc">${obj.description}</p>
+                    </div>
+                `;
+                list.appendChild(div);
+            });
+        });
+    </script>
 </body>
 </html>
