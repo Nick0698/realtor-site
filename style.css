@@ -1,4 +1,3 @@
-/* === БАЗА === */
 * {
     margin: 0;
     padding: 0;
@@ -9,7 +8,11 @@ body {
     font-family: 'Inter', sans-serif;
     color: #1b1b1b;
     background: #ffffff;
-    line-height: 1.6;
+    line-height: 1.7;
+}
+
+h1, h2, h3 {
+    font-family: 'Inter', sans-serif;
 }
 
 .container {
@@ -18,19 +21,9 @@ body {
     padding: 0 20px;
 }
 
-/* === ПЛАВНЫЕ ПЕРЕХОДЫ === */
+/* === АНИМАЦИИ === */
 a, button, .card, .service-card {
     transition: all 0.3s ease;
-}
-
-.fade-in {
-    animation: fadeIn 0.8s ease forwards;
-    opacity: 0;
-}
-
-@keyframes fadeIn {
-    from { opacity: 0; transform: translateY(20px); }
-    to { opacity: 1; transform: translateY(0); }
 }
 
 /* === ШАПКА === */
@@ -41,20 +34,52 @@ a, button, .card, .service-card {
     text-align: center;
 }
 
+.avatar {
+    width: 150px;
+    height: 150px;
+    border-radius: 50%;
+    border: 4px solid #95d5b2;
+    margin-bottom: 20px;
+    object-fit: cover;
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
 .hero h1 {
     font-size: 3em;
     font-weight: 700;
     margin-bottom: 10px;
-    animation: fadeIn 1s ease;
 }
 
 .subtitle {
-    font-size: 1.3em;
-    margin-bottom: 30px;
-    opacity: 0.95;
+    font-size: 1.2em;
+    margin-bottom: 20px;
+    color: #f8f9fa;
+}
+
+.phone {
+    font-size: 1.4em;
+    margin: 20px 0;
+}
+
+.phone a {
+    color: #95d5b2;
+    text-decoration: none;
+    font-weight: 700;
+}
+
+.phone a:hover {
+    color: #ffffff;
 }
 
 /* === КНОПКИ === */
+.buttons {
+    display: flex;
+    gap: 15px;
+    justify-content: center;
+    flex-wrap: wrap;
+    margin-top: 30px;
+}
+
 .btn {
     display: inline-block;
     background: #95d5b2;
@@ -66,12 +91,24 @@ a, button, .card, .service-card {
     border: none;
     cursor: pointer;
     font-size: 1em;
+    font-family: inherit;
 }
 
 .btn:hover {
     background: #ffffff;
     transform: translateY(-3px);
-    box-shadow: 0 8px 20px rgba(0,0,0,0.15);
+    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
+}
+
+.btn-outline {
+    background: transparent;
+    border: 2px solid #95d5b2;
+    color: #ffffff;
+}
+
+.btn-outline:hover {
+    background: #95d5b2;
+    color: #1b1b1b;
 }
 
 /* === СЕКЦИИ === */
@@ -84,23 +121,13 @@ section h2 {
     color: #2d6a4f;
     margin-bottom: 40px;
     text-align: center;
-    position: relative;
 }
 
-section h2::after {
-    content: '';
-    display: block;
-    width: 60px;
-    height: 3px;
-    background: #95d5b2;
-    margin: 15px auto 0;
-}
-
-.bg-light {
+.bg-cream {
     background: #f8f9fa;
 }
 
-/* === УСЛУГИ === */
+/* === УСЛУГИ / ПРИНЦИПЫ === */
 .services-grid {
     display: grid;
     grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
@@ -108,16 +135,17 @@ section h2::after {
 }
 
 .service-card {
-    background: white;
+    background: #ffffff;
     padding: 30px 20px;
     border-radius: 15px;
     text-align: center;
     box-shadow: 0 4px 15px rgba(0,0,0,0.05);
+    border: 1px solid #d8f3dc;
 }
 
 .service-card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 12px 30px rgba(45,106,79,0.15);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(45,106,79,0.15);
 }
 
 .service-card .icon {
@@ -145,8 +173,8 @@ section h2::after {
 }
 
 .card:hover {
-    transform: translateY(-8px);
-    box-shadow: 0 15px 35px rgba(45,106,79,0.2);
+    transform: translateY(-10px) scale(1.02);
+    box-shadow: 0 20px 40px rgba(45,106,79,0.2);
 }
 
 .card img {
@@ -177,6 +205,12 @@ section h2::after {
 }
 
 /* === ФОРМА === */
+.contact-text {
+    text-align: center;
+    color: #40916c;
+    margin-bottom: 30px;
+}
+
 form {
     display: flex;
     flex-direction: column;
@@ -187,11 +221,12 @@ form {
 
 form input, form textarea {
     padding: 14px;
-    border: 2px solid #e0e0e0;
+    border: 2px solid #d8f3dc;
     border-radius: 10px;
     font-family: inherit;
     font-size: 1em;
-    transition: border-color 0.3s ease;
+    background: #f8f9fa;
+    color: #1b1b1b;
 }
 
 form input:focus, form textarea:focus {
@@ -199,15 +234,10 @@ form input:focus, form textarea:focus {
     border-color: #40916c;
 }
 
-form textarea {
-    min-height: 120px;
-    resize: vertical;
-}
-
 /* === ФУТЕР === */
 footer {
     background: #2d6a4f;
-    color: white;
+    color: #95d5b2;
     text-align: center;
     padding: 30px 20px;
 }
@@ -215,18 +245,86 @@ footer {
 /* === АДАПТИВ === */
 @media (max-width: 768px) {
     .hero h1 { font-size: 2em; }
-    .subtitle { font-size: 1.1em; }
+    .subtitle { font-size: 1em; }
     section h2 { font-size: 1.7em; }
     section { padding: 50px 20px; }
 }
-/* === ФОТО РИЕЛТОРА === */
-.avatar {
-    width: 150px;
-    height: 150px;
-    border-radius: 50%;
-    border: 4px solid #95d5b2;
-    margin-bottom: 20px;
+/* === SPLIT-СЕКЦИЯ (фото + текст) === */
+.split-section {
+    padding: 0;
+    background: #f8f9fa;
+}
+
+.split-container {
+    display: flex;
+    min-height: 500px;
+    max-width: 1200px;
+    margin: 0 auto;
+    align-items: stretch;
+}
+
+.split-photo {
+    flex: 1;
+    overflow: hidden;
+    position: relative;
+}
+
+.split-photo {
+    flex: 0 0 400px;        /* фиксированная ширина */
+    padding: 40px;          /* отступы вокруг фото */
+    display: flex;
+    align-items: center;
+    justify-content: center;
+}
+
+.split-photo img {
+    width: 100%;
+    max-width: 320px;       /* ограничиваем размер */
+    height: auto;           /* сохраняем пропорции */
+    border-radius: 20px;    /* закругляем углы */
     object-fit: cover;
-    box-shadow: 0 8px 20px rgba(0,0,0,0.2);
-    animation: fadeIn 1s ease;
+    box-shadow: 0 15px 40px rgba(0,0,0,0.2);
+    filter: brightness(0.9); /* лёгкое затемнение */
+}
+
+.split-text {
+    flex: 1;
+    padding: 60px 40px;
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    background: #ffffff;
+}
+
+.split-text h2 {
+    font-size: 2em;
+    color: #2d6a4f;
+    margin-bottom: 20px;
+    text-align: left;
+}
+
+.split-text p {
+    color: #1b1b1b;
+    margin-bottom: 25px;
+    font-size: 1.05em;
+}
+
+/* Адаптив для телефонов */
+@media (max-width: 768px) {
+    .split-container {
+        flex-direction: column;
+    }
+    .split-photo {
+        height: 300px;
+    }
+}
+.fade-in {
+    opacity: 0;
+    transform: translateY(40px);
+    transition: opacity 0.8s ease, transform 0.8s ease;
+}
+
+.fade-in.visible {
+    opacity: 1;
+    transform: translateY(0);
 }

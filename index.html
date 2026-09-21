@@ -10,21 +10,32 @@
 <body>
     <header class="hero">
         <div class="container">
-            <img src="фото1.jpg" alt="Илюхин Николай" class="avatar">
-            <h1>Илюхин Николай<h1>
-            <p class="subtitle">Риелтор в Орехово-Зуево | Помогу купить, продать, снять</p>
-            <a href="#contact" class="btn">📞 Оставить заявку</a>
+            <img src="photo.jpg" alt="Силмарко" class="avatar">
+            <h1>Илюхин Николай</h1>
+            <p class="subtitle">Риелтор в Москве | Помогу купить, продать, снять</p>
+            <p class="phone">
+                <a href="tel:+79999999999">📞 +7 (999) 999-99-99</a>
+            </p>
+            <div class="buttons">
+                <a href="#callback" class="btn">📩 Заказать звонок</a>
+                <a href="#objects" class="btn btn-outline">🏠 Мои объекты</a>
+            </div>
         </div>
     </header>
 
-    <section id="about" class="fade-in">
-        <div class="container">
-            <h2>Обо мне</h2>
-            <p> Проведу сделку от первого просмотра до получения ключей.</p>
+  <section id="about" class="split-section">
+    <div class="split-container">
+        <div class="split-photo">
+            <img src="foto1.jpg" alt="Илюхин Николай">
         </div>
-    </section>
-
-    <section id="services" class="fade-in bg-light">
+        <div class="split-text">
+            <h2>Обо мне</h2>
+            <p>Более 5 лет помогаю клиентам находить идеальное жильё. Работаю честно, быстро и с душой. Проведу сделку от первого просмотра до получения ключей.</p>
+            <a href="#callback" class="btn">📩 Заказать звонок</a>
+        </div>
+    </div>
+</section>
+    <section id="services" class="fade-in bg-cream">
         <div class="container">
             <h2>Услуги</h2>
             <div class="services-grid">
@@ -59,68 +70,56 @@
         </div>
     </section>
 
-    <section id="reviews" class="fade-in bg-light">
+    <section id="principles" class="fade-in bg-cream">
         <div class="container">
-            <h2>Отзывы клиентов</h2>
-            <div class="cards">
-                <div class="card">
-                    <div class="card-body">
-                        <p>«Иван помог купить квартиру мечты за 2 недели. Всё чётко и быстро!»</p>
-                        <p><strong>— Анна, Москва</strong></p>
-                    </div>
-                </div>
-                <div class="card">
-                    <div class="card-body">
-                        <p>«Продал квартиру выше рынка. Спасибо за профессионализм!»</p>
-                        <p><strong>— Сергей, Москва</strong></p>
-                    </div>
-                </div>
-            </div>
-        </div>
-    </section>
-
-    <section id="partners" class="fade-in">
-        <div class="container">
-            <h2>Партнёры</h2>
+            <h2>Мои принципы</h2>
             <div class="services-grid">
                 <div class="service-card">
-                    <div class="icon">🏦</div>
-                    <h3>Сбербанк</h3>
-                    <p>Ипотека от 5%</p>
+                    <div class="icon">🤝</div>
+                    <h3>Честность</h3>
+                    <p>Говорю как есть, без прикрас</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon">🏦</div>
-                    <h3>ВТБ</h3>
-                    <p>Ипотека от 6%</p>
+                    <div class="icon">⚡</div>
+                    <h3>Скорость</h3>
+                    <p>Отвечаю в течение 15 минут</p>
                 </div>
                 <div class="service-card">
-                    <div class="icon">⚖️</div>
-                    <h3>Юрист</h3>
-                    <p>Сопровождение сделок</p>
+                    <div class="icon">📄</div>
+                    <h3>Прозрачность</h3>
+                    <p>Все документы — до подписания</p>
+                </div>
+                <div class="service-card">
+                    <div class="icon">🎯</div>
+                    <h3>Результат</h3>
+                    <p>Работаю до сделки, а не до показа</p>
                 </div>
             </div>
         </div>
     </section>
 
-    <section id="contact" class="fade-in bg-light">
+    <section id="callback" class="fade-in">
         <div class="container">
-            <h2>Связаться со мной</h2>
-            <form id="leadForm">
+            <h2>Заказать звонок</h2>
+            <p class="contact-text">Оставьте номер — я перезвоню в течение 15 минут.</p>
+            <form id="callbackForm">
                 <input type="text" placeholder="Ваше имя" required>
                 <input type="tel" placeholder="Телефон" required>
-                <textarea placeholder="Сообщение"></textarea>
-                <button type="submit" class="btn">Отправить заявку</button>
+                <button type="submit" class="btn">Жду звонка</button>
             </form>
         </div>
     </section>
 
     <footer>
         <div class="container">
-            <p>© 2026 Илюхин Николай Все права защищены.</p>
+            <p>© 2026 Иван Иванов. Все права защищены.</p>
         </div>
     </footer>
 
+    <button id="scrollTop" title="Наверх">↑</button>
+
     <script>
+    // Загрузка объектов
     fetch('data.json')
         .then(res => res.json())
         .then(data => {
@@ -140,7 +139,38 @@
                 `;
                 list.appendChild(div);
             });
+        })
+        .catch(() => console.log('Нет данных'));
+
+    // Форма обратного звонка
+    document.getElementById('callbackForm').addEventListener('submit', function(e) {
+        e.preventDefault();
+        alert('Спасибо! Я перезвоню в течение 15 минут.');
+        this.reset();
+    });
+
+    // Fade-in при скролле
+    const observer = new IntersectionObserver((entries) => {
+        entries.forEach(entry => {
+            if (entry.isIntersecting) {
+                entry.target.classList.add('visible');
+            }
         });
+    });
+    document.querySelectorAll('.fade-in').forEach(el => observer.observe(el));
+
+    // Кнопка "Вверх"
+    const scrollBtn = document.getElementById('scrollTop');
+    window.addEventListener('scroll', () => {
+        if (window.scrollY > 300) {
+            scrollBtn.classList.add('visible');
+        } else {
+            scrollBtn.classList.remove('visible');
+        }
+    });
+    scrollBtn.addEventListener('click', () => {
+        window.scrollTo({ top: 0, behavior: 'smooth' });
+    });
     </script>
 </body>
 </html>
