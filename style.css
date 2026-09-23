@@ -28,12 +28,51 @@ a, button, .card, .service-card {
 
 /* === ШАПКА === */
 .hero {
+    position: relative;
     background: linear-gradient(135deg, #2d6a4f 0%, #40916c 100%);
     color: white;
-    padding: 100px 20px;
+    padding: 120px 20px 100px;
     text-align: center;
 }
 
+/* === НАВИГАЦИЯ === */
+.main-nav {
+    position: absolute;
+    top: 25px;
+    left: 30px;
+    z-index: 1000;
+}
+
+.main-nav ul {
+    display: flex !important;
+    flex-direction: row !important;
+    gap: 25px;
+    list-style: none !important;
+    margin: 0 !important;
+    padding: 0 !important;
+}
+
+.main-nav li {
+    display: inline-block !important;
+    list-style: none !important;
+}
+
+.main-nav a {
+    color: #95d5b2 !important;
+    text-decoration: none !important;
+    font-weight: 600 !important;
+    font-size: 0.95em !important;
+    padding: 5px 0;
+    border-bottom: 2px solid transparent;
+    transition: all 0.3s ease;
+}
+
+.main-nav a:hover {
+    color: #ffffff !important;
+    border-bottom-color: #ffffff;
+}
+
+/* === АВАТАР === */
 .avatar {
     width: 150px;
     height: 150px;
@@ -244,10 +283,52 @@ footer {
 
 /* === АДАПТИВ === */
 @media (max-width: 768px) {
+    .hero {
+        padding: 100px 15px 60px;
+    }
+
     .hero h1 { font-size: 2em; }
     .subtitle { font-size: 1em; }
-    section h2 { font-size: 1.7em; }
-    section { padding: 50px 20px; }
+    .avatar { width: 100px; height: 100px; }
+
+    .main-nav {
+        top: 15px;
+        left: 15px;
+    }
+
+    .main-nav ul {
+        gap: 15px;
+        flex-wrap: wrap;
+    }
+
+    .main-nav a {
+        font-size: 0.85em !important;
+    }
+
+    section {
+        padding: 50px 15px;
+    }
+
+    section h2 {
+        font-size: 1.6em;
+    }
+
+    .services-grid,
+    .cards {
+        grid-template-columns: 1fr;
+        gap: 15px;
+    }
+
+    .buttons {
+        flex-direction: column;
+        align-items: center;
+    }
+
+    .btn {
+        width: 100%;
+        max-width: 280px;
+        text-align: center;
+    }
 }
 /* === SPLIT-СЕКЦИЯ (фото + текст) === */
 .split-section {
@@ -264,14 +345,8 @@ footer {
 }
 
 .split-photo {
-    flex: 1;
-    overflow: hidden;
-    position: relative;
-}
-
-.split-photo {
-    flex: 0 0 400px;        /* фиксированная ширина */
-    padding: 40px;          /* отступы вокруг фото */
+    flex: 0 0 400px;
+    padding: 40px;
     display: flex;
     align-items: center;
     justify-content: center;
@@ -279,12 +354,12 @@ footer {
 
 .split-photo img {
     width: 100%;
-    max-width: 320px;       /* ограничиваем размер */
-    height: auto;           /* сохраняем пропорции */
-    border-radius: 20px;    /* закругляем углы */
+    max-width: 320px;
+    height: auto;
+    border-radius: 20px;
     object-fit: cover;
     box-shadow: 0 15px 40px rgba(0,0,0,0.2);
-    filter: brightness(0.9); /* лёгкое затемнение */
+    filter: brightness(0.9);
 }
 
 .split-text {
@@ -315,16 +390,16 @@ footer {
         flex-direction: column;
     }
     .split-photo {
-        height: 300px;
+        flex: 0 0 auto;
+        padding: 20px;
     }
-}
-.fade-in {
-    opacity: 0;
-    transform: translateY(40px);
-    transition: opacity 0.8s ease, transform 0.8s ease;
-}
-
-.fade-in.visible {
-    opacity: 1;
-    transform: translateY(0);
+    .split-photo img {
+        max-width: 250px;
+    }
+    .split-text {
+        padding: 30px 20px;
+    }
+    .split-text h2 {
+        text-align: center;
+    }
 }

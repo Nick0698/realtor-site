@@ -40,3 +40,12 @@ document.querySelectorAll('section').forEach(el => {
     el.classList.add('fade-in');
     observer.observe(el);
 });
+// Фиксация меню при скролле
+const nav = document.querySelector('.main-nav');
+window.addEventListener('scroll', () => {
+    if (window.scrollY > 100) {
+        nav.classList.add('scrolled');
+    } else {
+        nav.classList.remove('scrolled');
+    }
+});
